@@ -56,3 +56,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
+# Use postgresql by task
+group :production do
+  gem 'pg'
+end
+# Use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0'
