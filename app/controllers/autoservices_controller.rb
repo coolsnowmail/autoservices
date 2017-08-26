@@ -1,0 +1,2 @@
+class AutoservicesController < ApplicationController
+end
