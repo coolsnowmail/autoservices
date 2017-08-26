@@ -62,3 +62,4 @@ group :production do
 end
 gem 'popper_js'
 gem 'faker', '~> 1.8', '>= 1.8.4'
+gem "font-awesome-rails"
