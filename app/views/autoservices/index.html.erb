@@ -20,7 +20,7 @@
                 <span class="card-title"> <%= service.name %>,  </span>
               <% end %>
             </p>
-            <%= link_to "See more", autoservice_path(autoservice.id), class: "btn btn-primary" %>
+            <%= link_to "See more", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>
