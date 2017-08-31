@@ -1,1 +1,35 @@
-<h1>dsffd</h1>
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-10">
+
+      <h1 class="my-4"> Autoservice list </h1>
+      <% @autoservices.each do |autoservice| %>
+        <!-- Blog Post -->
+        <div class="card mb-4" id="autoservice_<%= autoservice.id %>">
+          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title"> <%= autoservice.name %> </h2>
+            <h3 class="card-title"> Address: <%= autoservice.address %> </h2>
+            <h3 class="card-title"> Phone: <%= autoservice.phone %> </h2>
+            <p class="card-text">
+              <% autoservice.services.each do |service| %>
+                <span class="card-title"> <%= service.name %>,  </span>
+              <% end %>
+            </p>
+            <%= link_to "Edit", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
+            <%= link_to "Add Photo", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
+            <%= link_to "Delete", autoservice, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-primary", remote: true %>
+            <%= link_to "See comments", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
+    <!-- /.container -->
