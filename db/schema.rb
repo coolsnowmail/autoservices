@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826091727) do
+ActiveRecord::Schema.define(version: 20170831132910) do
 
   create_table "autoservices", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 20170826091727) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "mail"
+    t.text "text"
+    t.integer "autoservice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["autoservice_id"], name: "index_comments_on_autoservice_id"
   end
 
   create_table "moderators", force: :cascade do |t|

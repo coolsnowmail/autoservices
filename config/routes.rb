@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   resources :moderators
   resources :autoservices
   controller :sessions do

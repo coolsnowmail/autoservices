@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<button class="btn btn-default" id="comment"><i class="fa fa-comment" aria-hidden="true"></i> Leave a comment for moderator </button>
+<button class="btn btn-default commenti"><i class="fa fa-comment" aria-hidden="true"></i> Leave a comment for moderator </button>
 
 <div class="bg-popup"></div>
   <div class="card card-login mx-auto popup">
@@ -36,7 +36,7 @@
     <div class="card-body">
       <p class="text-danger"><%=flash[:alert]%></p>
 
-      <%= form_tag do %>
+      <%= form_tag({controller: "autoservices", action: "create"}, method: "post") do %>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <%= text_field_tag :email, params[:email], class: 'form-control', id: 'exampleInputEmail1', placeholder: 'Enter email', type: 'email'%>
@@ -45,6 +45,7 @@
           <label for="exampleTextarea">Text</label>
           <%= text_area_tag :text, params[:text], class: 'form-control', id: 'exampleTextarea', placeholder: 'Your comment', type: 'text', rows: "5" %>
         </div>
+          <%= hidden_field_tag :id, @autoservice.id %>
 
         <%= submit_tag 'Send', class: "btn btn-primary btn-block" %>
       <% end %>
