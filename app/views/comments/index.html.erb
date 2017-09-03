@@ -1,0 +1,24 @@
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-10">
+
+      <h3 class="my-4"> <%= @autoservice.name %> </h3>
+      <% @autoservice.comments.each do |comment| %>
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"> <%= comment.mail %> </h5>
+            <p class="card-title"> Address: <%= comment.text %> </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
+    <!-- /.container -->

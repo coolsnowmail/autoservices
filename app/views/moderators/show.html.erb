@@ -21,9 +21,8 @@
               <% end %>
             </p>
             <%= link_to "Edit", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
-            <%= link_to "Add Photo", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
             <%= link_to "Delete", autoservice, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-primary", remote: true %>
-            <%= link_to "See comments", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
+            <%= link_to "See comments", comments_url(id: autoservice.id), class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>

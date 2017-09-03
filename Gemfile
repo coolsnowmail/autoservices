@@ -63,3 +63,5 @@ end
 gem 'popper_js'
 gem 'faker', '~> 1.8', '>= 1.8.4'
 gem "font-awesome-rails"
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
