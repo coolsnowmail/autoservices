@@ -6,6 +6,11 @@ class AutoservicesController < ApplicationController
     @autoservices = Autoservice.all
   end
 
+  def edit
+    @autoservice = Autoservice.find_by(id: params[:id])
+    render partial: "autoservice_edit"
+  end
+
   def show
     @autoservice = Autoservice.find_by(id: params[:id])
   end

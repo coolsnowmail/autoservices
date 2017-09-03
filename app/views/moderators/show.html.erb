@@ -4,6 +4,7 @@
   <div class="row">
 
     <!-- Blog Entries Column -->
+    <div class="col-md-1"></div>
     <div class="col-md-10">
 
       <h1 class="my-4"> Autoservice list </h1>
@@ -20,17 +21,44 @@
                 <span class="card-title"> <%= service.name %>,  </span>
               <% end %>
             </p>
-            <%= link_to "Edit", autoservice_url(autoservice), method: :get, class: "btn btn-primary" %>
+            <%= link_to "Edit", edit_autoservice_url(id: autoservice.id), remote: true, class: "btn btn-primary", id: "button_edit_#{autoservice.id}"%>
             <%= link_to "Delete", autoservice, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-primary", remote: true %>
             <%= link_to "See comments", comments_url(id: autoservice.id), class: "btn btn-primary" %>
           </div>
         </div>
 
 
+          <div class="card card-login mx-auto service_hide surface" id="autoservice_edit_<%= autoservice.id %>">
+            <div class="card-header">
+              <i class="fa fa-envelope" aria-hidden="true"></i> Contact us
+            </div>
+            <div class="card-body">
+              <p class="text-danger"><%=flash[:alert]%></p>
+
+              <%= form_tag({controller: "autoservices", action: "create"}, method: "post") do %>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <%= text_field_tag :email, params[:email], class: 'form-control', id: 'exampleInputEmail1', placeholder: 'Enter email', type: 'email'%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleTextarea">Text</label>
+                  <%= text_area_tag :text, params[:text], class: 'form-control', id: 'exampleTextarea', placeholder: 'Your comment', type: 'text', rows: "5" %>
+                </div>
+                  <%= hidden_field_tag :id, autoservice.id %>
+
+                <%= submit_tag 'Send', class: "btn btn-primary btn-block" %>
+              <% end %>
+            </div>
+          </div>
+
+
       <% end %>
     </div>
+    <div class="col-md-1"></div>
   </div>
   <!-- /.row -->
 
 </div>
+
+<div class="bg-popup"></div>
 
