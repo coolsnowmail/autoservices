@@ -11,7 +11,12 @@
       <% @autoservices.each do |autoservice| %>
         <!-- Blog Post -->
         <div class="card mb-4" id="autoservice_<%= autoservice.id %>">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+
+          <% unless autoservice.avatar.blank? %>
+            <%= image_tag autoservice.avatar.url(:thumb), class: "card-img-top" %>
+          <% else %>
+            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <% end %>
           <div class="card-body">
             <h2 class="card-title"> <%= autoservice.name %> </h2>
             <h3 class="card-title"> Address: <%= autoservice.address %> </h2>
@@ -30,23 +35,33 @@
 
           <div class="card card-login mx-auto service_hide surface" id="autoservice_edit_<%= autoservice.id %>">
             <div class="card-header">
-              <i class="fa fa-envelope" aria-hidden="true"></i> Contact us
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit this autoservice
             </div>
             <div class="card-body">
               <p class="text-danger"><%=flash[:alert]%></p>
 
-              <%= form_tag({controller: "autoservices", action: "create"}, method: "post") do %>
+              <%= form_for autoservice, html: { multipart: true } do |f|%>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <%= text_field_tag :email, params[:email], class: 'form-control', id: 'exampleInputEmail1', placeholder: 'Enter email', type: 'email'%>
+                  <label for="usr">Name</label>
+                  <%= f.text_field :name, class: 'form-control', id: 'usr', placeholder: 'Enter name', type: 'text'%>
                 </div>
-                <div class="form-group">
-                  <label for="exampleTextarea">Text</label>
-                  <%= text_area_tag :text, params[:text], class: 'form-control', id: 'exampleTextarea', placeholder: 'Your comment', type: 'text', rows: "5" %>
-                </div>
-                  <%= hidden_field_tag :id, autoservice.id %>
 
-                <%= submit_tag 'Send', class: "btn btn-primary btn-block" %>
+                <div class="form-group">
+                  <label for="usr">Phone</label>
+                  <%= f.text_field :phone, class: 'form-control', id: 'usr', placeholder: 'Enter phone', type: 'text'%>
+                </div>
+
+                <div class="form-group">
+                  <label for="usr">Address</label>
+                  <%= f.text_field :address, class: 'form-control', id: 'usr', placeholder: 'Enter address', type: 'text'%>
+                </div>
+
+                <div class="form-group">
+                  <%= image_tag(autoservice.avatar_url, width: "100%") if autoservice.avatar? %>
+                  <%= f.file_field :avatar, class: 'form-control'%>
+                </div>
+
+                <%= f.submit 'Edit', class: "btn btn-primary btn-block" %>
               <% end %>
             </div>
           </div>
