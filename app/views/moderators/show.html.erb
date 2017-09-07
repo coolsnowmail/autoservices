@@ -61,6 +61,20 @@
                   <%= f.file_field :avatar, class: 'form-control'%>
                 </div>
 
+                <%= f.fields_for :services do |service_form| %>
+                  <div class="form-group">
+                    <fieldset>
+                      <div class="input-group">
+                        <%= service_form.text_field :name, class: 'form-control', id: 'usr', placeholder: 'Service type', type: 'text' %>
+                        <%= link_to '<i class="fa fa-minus"></i>'.html_safe, '#', class: 'remove_fields input-group-addon' %>
+                      </div>
+                      <%= service_form.hidden_field :_destroy %>
+                    </fieldset>
+                  </div>
+                <% end %>
+
+                <%= link_to_add_fields 'Add service', f, :services %>
+
                 <%= f.submit 'Edit', class: "btn btn-primary btn-block" %>
               <% end %>
             </div>
@@ -76,4 +90,7 @@
 </div>
 
 <div class="bg-popup"></div>
+<button class="btn btn-default commenti"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-wrench" aria-hidden="true"></i> Create new autoservice </button>
 
+
+<%= render 'form' %>

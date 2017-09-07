@@ -21,11 +21,8 @@ class AutoservicesController < ApplicationController
   end
 
   def create
-    # autoservice = Autoservice.find_by(id: params[:id])
-    # @comment = autoservice.comments.build(mail: params[:email], text: params[:text])
-    # @comment.save
-    # UserMailer.new_comment_alerm(@comment).deliver
-    # redirect_to autoservice_path(autoservice.id)
+    @autoservice = Autoservice.create(autoservice_params)
+    redirect_to moderator_path(session[:moderator_id])
   end
 
   def destroy
@@ -40,6 +37,6 @@ class AutoservicesController < ApplicationController
     end
 
     def autoservice_params
-      params.require(:autoservice).permit(:name, :address, :phone, :avatar)
+      params.require(:autoservice).permit(:name, :address, :phone, :avatar, services_attributes: Service.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end

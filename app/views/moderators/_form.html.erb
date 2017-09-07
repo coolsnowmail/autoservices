@@ -1,0 +1,42 @@
+<div class="card card-login mx-auto surface">
+  <div class="card-header">
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create new autoservice
+  </div>
+  <div class="card-body">
+    <% if @autoservice.errors.any? %>
+      <% @autoservice.errors.full_messages.each do |message| %>
+        <p class="text-danger"><%= message %></p>
+      <% end %>
+    <% end %>
+
+    <%= form_for @autoservice, html: { multipart: true } do |f|%>
+      <div class="form-group">
+        <label for="usr">Name</label>
+        <%= f.text_field :name, class: 'form-control', id: 'usr', placeholder: 'Enter name', type: 'text'%>
+      </div>
+
+      <div class="form-group">
+        <label for="usr">Phone</label>
+        <%= f.text_field :phone, class: 'form-control', id: 'usr', placeholder: 'Enter phone', type: 'text'%>
+      </div>
+
+      <div class="form-group">
+        <label for="usr">Address</label>
+        <%= f.text_field :address, class: 'form-control', id: 'usr', placeholder: 'Enter address', type: 'text'%>
+      </div>
+
+      <div class="form-group">
+        <%= f.file_field :avatar, class: 'form-control'%>
+      </div>
+
+
+      <%= f.fields_for :services do |service_form| %>
+        <%= render 'service_fields', f: service_form %>
+      <% end %>
+
+      <%= link_to_add_fields '<i class="fa fa-plus"></i>'.html_safe, f, :services %>
+
+      <%= f.submit 'Create', class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>
