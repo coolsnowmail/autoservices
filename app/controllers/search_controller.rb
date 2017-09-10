@@ -1,10 +1,8 @@
 class SearchController < ApplicationController
   skip_before_action :authorize_moderator, only: [:autoservice_search]
   def autoservice_search
-    puts params[:search]
-    i = Service.where("name LIKE ?", "%#{params[:search]}%")
-    i = Service.where("name LIKE ?", "%#{params[:search]}%")
-    puts i
-    puts 111111111111111
+    # search_names = Service.all.pluck(:name).uniq + Autoservice.all.pluck(:name)
+    # puts search_names
+    render json: Search.terms_for(params[:term])
   end
 end

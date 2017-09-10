@@ -35,9 +35,6 @@
           <%= will_paginate @autoservices, :container => false %>
         </div>
     </div>
-
-
-
     <!-- Sidebar Widgets Column -->
     <div class="col-md-4">
 
@@ -46,7 +43,7 @@
         <h5 class="card-header">Search autoservice</h5>
         <div class="card-body">
         <%= form_tag autoservices_path, method: 'get', class: "form-inline" do %>
-          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search for ..." %>
+          <%= text_field_tag :search, params[:search], class: "form-control", id: "search_id", placeholder: "Search for ..." %>
           <%= submit_tag "Search", name: nil, class: "btn btn-secondary" %>
         <% end %>
         </div>

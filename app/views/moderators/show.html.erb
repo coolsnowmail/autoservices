@@ -79,9 +79,13 @@
               <% end %>
             </div>
           </div>
-
-
       <% end %>
+          <div class="apple_pagination mb-4">
+            <div class="page_info">
+              <%= page_entries_info @autoservices %>
+            </div>
+            <%= will_paginate @autoservices, :container => false %>
+          </div>
     </div>
     <div class="col-md-1"></div>
   </div>

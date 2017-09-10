@@ -63,3 +63,4 @@ gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem 'pg_search'
 gem 'will_paginate', '~> 3.0.5'
+gem 'jquery-ui-rails'

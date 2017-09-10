@@ -1,6 +1,6 @@
 class ModeratorsController < ApplicationController
   def show
-    @autoservices = Autoservice.all.order('updated_at DESC')
+    @autoservices = Autoservice.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
     @autoservice = Autoservice.new
   end
 end
