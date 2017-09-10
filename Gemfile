@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -56,12 +56,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
-# Use postgresql by task
-group :production do
-  gem 'pg'
-end
 gem 'popper_js'
 gem 'faker', '~> 1.8', '>= 1.8.4'
 gem "font-awesome-rails"
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem 'pg_search'
+gem 'will_paginate', '~> 3.0.5'

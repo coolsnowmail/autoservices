@@ -1,9 +1,21 @@
 class AutoservicesController < ApplicationController
+  require 'will_paginate/collection'
   skip_before_action :authorize_moderator, only: [:index, :show, :create]
   before_action :set_autoservice, only: [:destroy, :update]
   def index
     return redirect_to moderator_path(session[:moderator_id]) if session[:moderator_id]
-    @autoservices = Autoservice.all
+    if params.has_key?(:search)
+      autoservices_by_search = Autoservice.search_autoservice(params[:search])
+      services = Service.where("name LIKE ?", "%#{params[:search]}%")
+      autoservices_ids = services.pluck(:autoservice_id).uniq
+      autoservices_form_services = Autoservice.find(autoservices_ids)
+      @autoservices = (autoservices_by_search + autoservices_form_services).uniq
+      @autoservices = @autoservices.paginate(:page => params[:page], :per_page => 5)
+    else
+      @autoservices = Autoservice.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
+    end
+      @service_names = Service.all.pluck(:name).uniq
+      @autoservice_names = @autoservices.pluck(:name)
   end
 
   def edit

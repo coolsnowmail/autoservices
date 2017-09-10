@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170831180928) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "autoservices", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170831180928) do
   create_table "comments", force: :cascade do |t|
     t.string "mail"
     t.text "text"
-    t.integer "autoservice_id"
+    t.bigint "autoservice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["autoservice_id"], name: "index_comments_on_autoservice_id"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170831180928) do
 
   create_table "services", force: :cascade do |t|
     t.string "name"
-    t.integer "autoservice_id"
+    t.bigint "autoservice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["autoservice_id"], name: "index_services_on_autoservice_id"

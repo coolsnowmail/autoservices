@@ -21,6 +21,14 @@ namespace :db do
             autoservice.services << service
           end
         end
+
+        rand(10..40).times do
+          Comment.create do |comment|
+            comment.text = Faker::Lorem.paragraph(rand(10..30))
+            comment.mail = Faker::Internet.email
+            autoservice.comments << comment
+          end
+        end
       end
     end
   end
