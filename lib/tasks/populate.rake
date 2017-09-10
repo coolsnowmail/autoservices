@@ -3,12 +3,9 @@ namespace :db do
   task :populate => :environment do
     require 'faker'
 
-    Rake::Task['db:reset'].invoke
-
       moderator = Moderator.create(email: "moderator@mail.ru",
         password: "123",
         password_confirmation: "123")
-    # Create 15 posts
     15.times do
       Autoservice.create do |autoservice|
         autoservice.name = Faker::Job.title
