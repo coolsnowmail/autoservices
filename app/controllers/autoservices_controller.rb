@@ -1,5 +1,6 @@
 class AutoservicesController < ApplicationController
   require 'will_paginate/collection'
+  protect_from_forgery :except => :show
   skip_before_action :authorize_moderator, only: [:index, :show, :create]
   before_action :set_autoservice, only: [:destroy, :update]
   def index
@@ -14,17 +15,15 @@ class AutoservicesController < ApplicationController
     else
       @autoservices = Autoservice.paginate(:page => params[:page], :per_page => 5).order('updated_at DESC')
     end
-      @service_names = Service.all.pluck(:name).uniq
-      @autoservice_names = @autoservices.pluck(:name)
   end
 
   def edit
     @autoservice = Autoservice.find_by(id: params[:id])
-    render partial: "autoservice_edit"
   end
 
   def show
     @autoservice = Autoservice.find_by(id: params[:id])
+    render partial: "alert_f" if flash[:alert]
   end
 
   def update

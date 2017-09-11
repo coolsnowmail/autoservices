@@ -7,7 +7,10 @@ class CommentsController < ApplicationController
   def create
     autoservice = Autoservice.find_by(id: params[:id])
     @comment = autoservice.comments.build(mail: params[:email], text: params[:text])
-    @comment.save
-    redirect_to autoservice_path(autoservice.id)
+    if @comment.save
+      redirect_to autoservice_path(autoservice.id), turbolinks: true
+    else
+      redirect_to autoservice_path(autoservice.id), alert: "Invalid email or password", turbolinks: true
+    end
   end
 end
