@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to autoservice_path(autoservice.id), turbolinks: true
     else
-      redirect_to autoservice_path(autoservice.id), alert: "Invalid email or password", turbolinks: true
+      redirect_to autoservice_path(autoservice.id), alert: "Incorrect comment", turbolinks: true
     end
   end
 end
